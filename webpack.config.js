@@ -30,11 +30,22 @@ module.exports = {
                 ]
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.(css|scss)$/,
                 use: [
                     'style-loader',
                     'css-loader',
                     'sass-loader'
+                ]
+            },
+            {
+                test: /\.(png|jp(e*)g|svg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name:'images/[hash]-[name].[ext]'
+                        }
+                    }
                 ]
             }
         ]
@@ -49,7 +60,9 @@ module.exports = {
         })
     ],
     devServer: {
-        static: path.join(__dirname, 'dist'),
+        static: {
+            directory: path.join(__dirname, 'dist')
+        },
         compress: true,
         port: 3005
     }
