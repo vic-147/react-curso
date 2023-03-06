@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from '../../public/assets/logos/logo_yard_sale.svg';
 import email from '../../public/assets/icons/email.svg';
-import '../styles/RecoveryPasswprd.scss';
+import '../styles/PasswordRecovery.scss';
 
-export const RecoveryPasswprd = () => {
+export const PasswordRecovery = () => {
   return (
         <div className="login">
             <div className="form-container">
