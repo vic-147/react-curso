@@ -11,7 +11,15 @@ module.exports = {
     },
     mode: 'development',
     resolve: {
-        extensions: ['.js', 'jsx']
+        extensions: ['.js', 'jsx'],
+        alias: {
+            '@components': path.resolve(__dirname, 'src/components/'),
+            '@containers': path.resolve(__dirname, 'src/containers/'),
+            '@pages': path.resolve(__dirname, 'src/pages/'),
+            '@styles': path.resolve(__dirname, 'src/styles/'),
+            '@icons': path.resolve(__dirname, 'src/assets/icons/'),
+            '@logos': path.resolve(__dirname, 'src/assets/logos/')
+        }
     },
     module: {
         rules: [
@@ -40,14 +48,16 @@ module.exports = {
             },
             {
                 test: /\.(png|jp(e*)g|svg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name:'images/[hash]-[name].[ext]'
-                        }
-                    }
-                ]
+                type: 'asset'
+                // el loader no es necesario
+                // use: [
+                //     {
+                //         loader: 'file-loader',
+                //         options: {
+                //             name:'images/[hash]-[name].[ext]'
+                //         }
+                //     }
+                // ]
             }
         ]
     },
@@ -65,9 +75,7 @@ module.exports = {
             directory: path.join(__dirname, 'dist')
         },
         compress: true,
-        port: 3005
-    },
-    devServer: {
+        port: 3005,
         historyApiFallback: true,
     }
 }
