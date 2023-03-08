@@ -3,16 +3,19 @@ import OrderItem from '@components/OrderItem.jsx';
 import AppContext from "@context/AppContext.js"
 import '@styles/MyOrder.scss';
 import flechita from '@icons/flechita.svg';
+import { v4 as uuidv4 } from 'uuid';
 
 const MyOrder = () => {
 	const { state } = useContext(AppContext);
 
-	//no consegui hacr funcionar con este
-	 const sumTotal = () => {
-	 	const reducer = (accumulator, currentValue) => accumulator + currentValue.price;
-		const sum = state.cart.reduce(reducer, 0);
-	 	return sum;
-	 }
+	// Agrega una clave única "uuid" a cada objeto "product"
+	const cartWithIds = state.cart.map(product => ({ ...product, uuid: uuidv4() }));
+
+	const sumTotal = () => {
+		const reducer = (accumulator, currentValue) => accumulator + currentValue.price;
+		const sum = cartWithIds.reduce(reducer, 0);
+		return sum;
+	}
 
 	return (
 		<aside className="MyOrder">
@@ -21,9 +24,10 @@ const MyOrder = () => {
 				<p className="title">My order</p>
 			</div>
 			<div className="my-order-content">
-				{state.cart.map(product => (
-				<OrderItem product={product} key={`productItem-${product.id}`} />
+				{cartWithIds.map(product => (
+					<OrderItem product={product} key={`productItem-${product.uuid}`} />
 				))}
+				
 				<div className="order">
 					<p>
 						<span>Total</span>
@@ -39,5 +43,3 @@ const MyOrder = () => {
 }
 
 export default MyOrder;
-// funcion de sumar de la etiqueta p
-// {state.cart.map(product => parseFloat(product.price)).reduce((a,b) => a + b)}

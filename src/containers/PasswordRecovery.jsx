@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from '../../public/assets/logos/logo_yard_sale.svg';
-import email from '../../public/assets/icons/email.svg';
-import '../styles/PasswordRecovery.scss';
+import logo from '@logos/logo_yard_sale.svg';
+import email from '@icons/email.svg';
+import '@styles/PasswordRecovery.scss';
 
 export const PasswordRecovery = () => {
   return (

@@ -13,7 +13,7 @@ const useInitialState = () => {
             cart: [...state.cart, payload]
         });
     };
-    console.log(initialState);
+    //console.log(initialState);
     return {
         state,
         addToCart,
